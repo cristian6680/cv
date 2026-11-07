@@ -3,21 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cristian Angel Romano - CV Web & Contacto</title>
+    <title>CV Web - Dark Mode</title>
     <style>
         :root {
-            /* Paleta en modo oscuro */
             --primary: #f8fafc;
             --secondary: #60a5fa;
             --text: #cbd5e1;
-            --bg: #0f172a;       /* Azul noche muy oscuro para el fondo general */
-            --card-bg: #1e293b;  /* Contenedor en gris/azul oscuro */
-            --accent-glow: rgba(96, 165, 250, 0.6);
-            --accent-border: #334155;
-        }
-
-        * {
-            box-sizing: border-box;
+            --bg: #0f172a;       
+            --card-bg: #1e293b;  
         }
 
         body {
@@ -27,60 +20,35 @@
             background: var(--bg);
             margin: 0;
             padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
         }
 
         .container {
-            width: 100%;
             max-width: 800px;
-            margin: 20px auto;
+            margin: 0 auto;
             background: var(--card-bg);
             padding: 40px;
-            border-radius: 16px;
-            /* Sombra profunda en la caja principal para despegarla del fondo */
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(59, 130, 246, 0.15);
-            border: 1px solid var(--accent-border);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        /* --- CONTROL DE NAVEGACIÓN DE PÁGINAS --- */
-        .page {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .page.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+            border: 1px solid #334155;
         }
 
         header {
             text-align: center;
-            border-bottom: 2px solid var(--accent-border);
+            border-bottom: 2px solid #334155;
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
 
-        /* --- EFECTOS DE SOMBRA EN TEXTO SOBRE FONDO OSCURO --- */
-
-        /* H1 con sombra neón/resplandor azul + sombra caer hacia abajo */
+        /* SOMBRAS Y RESPLANDOR */
         h1 { 
             margin: 0; 
             color: var(--primary); 
             font-size: 2.5rem; 
             text-shadow: 
-                0px 0px 12px var(--accent-glow), 
+                0px 0px 12px rgba(96, 165, 250, 0.6), 
                 3px 4px 6px rgba(0, 0, 0, 0.9);
         }
 
-        /* Subtítulo con sombra luminosa */
         .subtitle { 
             color: var(--secondary); 
             font-size: 1.2rem; 
@@ -89,7 +57,6 @@
             text-shadow: 0px 0px 8px rgba(96, 165, 250, 0.5);
         }
 
-        /* H2 con sombra marcada hacia la derecha y resplandor sutil */
         h2 { 
             color: var(--primary); 
             border-left: 4px solid var(--secondary); 
@@ -100,24 +67,41 @@
                 0px 0px 6px rgba(96, 165, 250, 0.4);
         }
 
-        /* Párrafos con una sombra oscura nítida detrás para dar lectura en relieve */
         p {
             text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
         }
 
-        .links a, .nav-btn { 
+        .links a, .links button { 
             color: #93c5fd; 
-            margin: 0 10px; 
+            margin: 0 5px; 
             text-decoration: none; 
             font-weight: bold; 
             text-shadow: 0px 0px 5px rgba(147, 197, 253, 0.4);
+            background: none;
+            border: none;
+            font-size: 1rem;
             cursor: pointer;
-            transition: color 0.2s ease, text-shadow 0.2s ease;
+            font-family: inherit;
         }
 
-        .links a:hover, .nav-btn:hover { 
+        .links a:hover, .links button:hover { 
             color: #ffffff; 
-            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9), 0px 0px 15px rgba(96, 165, 250, 0.8);
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Estilo destacado para el botón de descarga */
+        .btn-download {
+            background: rgba(59, 130, 246, 0.2) !important;
+            border: 1px solid var(--secondary) !important;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download:hover {
+            background: var(--secondary) !important;
+            color: #0f172a !important;
+            text-shadow: none !important;
         }
 
         section { margin-bottom: 35px; }
@@ -141,232 +125,135 @@
             font-weight: 500; 
             font-size: 0.9rem;
             border: 1px solid #1d4ed8;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             text-shadow: 0px 0px 4px rgba(147, 197, 253, 0.5);
         }
 
-        /* --- ESTILOS DE LA PÁGINA DE CONTACTO --- */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .contact-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--accent-border);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--secondary);
-        }
-
-        .contact-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #94a3b8;
-            margin-bottom: 6px;
-        }
-
-        .contact-value {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--primary);
-            word-break: break-all;
-            text-shadow: 0px 0px 6px rgba(96, 165, 250, 0.4), 1px 2px 3px rgba(0,0,0,0.8);
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 1px solid #60a5fa;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 10px;
-        }
-
-        .btn-back:hover {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .btn-back:active {
-            transform: translateY(0);
+        /* ESTILOS PARA IMPRESIÓN / GUARDAR COMO PDF */
+        @media print {
+            body {
+                background: white;
+                color: #1e293b;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                background: white;
+            }
+            h1, h2, .item-title, p, .subtitle {
+                text-shadow: none !important;
+                color: #0f172a !important;
+            }
+            h2 {
+                border-left-color: #2563eb;
+            }
+            .subtitle {
+                color: #2563eb !important;
+            }
+            .links button, .btn-download {
+                display: none; /* Oculta el botón al generar el PDF */
+            }
+            .skills-list li {
+                background: #f1f5f9;
+                color: #1e293b;
+                border: 1px solid #cbd5e1;
+                text-shadow: none;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- PÁGINA 1: CURRICULUM VITAE -->
-    <div id="page-cv" class="page active">
-        <header>
-            <h1>Cristian Angel Romano</h1>
-            <div class="subtitle">Curriculum Vitae</div>
-            <div class="links">
-                <a href="#contacto" onclick="navigateTo('page-contact')">Datos personales</a> • 
-                <a href="https://www.linkedin.com/in/cristianromanosysadmin/" target="_blank">LinkedIn</a> • 
-                <a href="https://github.com/cristian6680" target="_blank">Portfolio/GitHub</a>
-            </div>
-        </header>
-
-        <section>
-            <h2>Perfil Profesional</h2>
-            <p>Perfil polivalente con formación en Informática, Ciberseguridad y Comercio Exterior. Poseo una sólida trayectoria en administración, atención al cliente y soporte técnico, lo que me ha permitido desarrollar una gran capacidad analítica para la detección de errores y la resolución de problemas cotidianos con la tecnología. Soy proactivo, con dominio intermedio de inglés y portugués, orientado a aportar eficiencia operativa en entornos dinámicos.</p>
-        </section>
-
-        <section>
-            <h2>Experiencia Laboral</h2>
-            <div class="item">
-                <div class="item-title">
-                    <span>Desarrollador independiente</span>
-                    <span class="date">07/2019 - Presente</span>
-                </div>
-                <p>Técnico de soporte informático independiente. Prestación de servicios técnicos para clientes particulares y pequeños comercios locales. Diagnóstico, reparación y optimización de computadoras de escritorio y notebooks (Windows y Linux). Instalación y configuración de software, sistemas operativos, antivirus y redes domésticas de internet. Asistencia y asesoramiento técnico básico a usuarios para la resolución de problemas cotidianos con la tecnología.</p>
-            </div>
-            <div class="item">
-                <div class="item-title">
-                    <span>Analista comex — Biokeen s.a</span>
-                    <span class="date">12/2014 - 01/2019</span>
-                </div>
-                <p>Detección y resolución de discrepancias en la carga de datos (Identificación de errores/bugs operativos). Recepción de proveedores, facturación, conciliaciones bancarias, coordinación de cargas y verificación de documentación en comercio exterior (BL, certificados de origen, declaraciones aduaneras), coordinación con despachantes de aduanas.</p>
-            </div>
-            <div class="item">
-                <div class="item-title">
-                    <span>Data Entry — Banco Santander</span>
-                    <span class="date">09/2012 - 04/2013</span>
-                </div>
-                <p>Analista jr para control de oficializaciones aduaneras en el sector comex.</p>
-            </div>
-            <div class="item">
-                <div class="item-title">
-                    <span>Administrativo — Centro de cirugía ocular s.a</span>
-                    <span class="date">06/2007 - 12/2011</span>
-                </div>
-                <p>Empleado Administrativo. Admisión de pacientes, facturación, estudios de alta complejidad, turnos y emisión de órdenes médicas para autorizaciones en obra social.</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Educación</h2>
-            <div class="item">
-                <div class="item-title">
-                    <span>Diplomatura en administración de redes Linux y ciberseguridad con hacking ético. UTN regional Delta</span>
-                    <span class="date"></span>
-                </div>
-                <p>Capacitación técnica orientada a la gestión avanzada de sistemas operativos de código abierto, implementación de medidas de seguridad perimetral, detección de brechas de seguridad y mitigación de riesgos informáticos.</p>
-            </div>
-            <div class="item">
-                <div class="item-title">
-                    <span>Universidad Nacional de Quilmes. Estudiante de licenciatura en informática.</span>
-                    <span class="date"></span>
-                </div>
-                <p>Desarrollo de competencias analíticas y técnicas para el diseño, desarrollo e implementación de soluciones de software eficientes. Comprensión profunda de estructuras de datos, algoritmos y paradigmas tecnológicos adaptados a las necesidades operativas de las organizaciones</p>
-            </div>
-            <div class="item">
-                <div class="item-title">
-                    <span>Despachante de aduanas. ICA(Instituto de capacitación aduanera).</span>
-                    <span class="date"></span>
-                </div>
-                <p>Capacitación en legislación aduanera, valoración de mercaderías, operativa bancaria de comex y procedimientos del régimen de destinaciones de importación y exportación, orientada al cumplimiento normativo y la eficiencia logística internacional.</p>
-            </div>
-            <div class="item">
-                <div class="item-title">
-                    <span>Colegio General San Martín (secundario).</span>
-                    <span class="date"></span>
-                </div>
-                <p>Título bachiller.</p>
-            </div>
-        </section>    
-
-        <section>
-            <h2>Habilidades Técnicas</h2>
-            <ul class="skills-list">
-                <li>• Desarrollador independiente fullstack para pequeños comercios.</li>
-                <li>• Programación estructurada en cobol (herramientas de control mainframe (jcl,ispf,db2).</li>
-                <li>• Herramientas office.</li>
-                <li>• Nivel básico de inglés y portugués.</li>
-            </ul>
-        </section>
-    </div>
-
-    <!-- PÁGINA 2: DATOS DE CONTACTO -->
-    <div id="page-contact" class="page">
-        <header>
-            <h1>Información de Contacto</h1>
-            <div class="subtitle">Cristian Angel Romano</div>
-        </header>
-
-        <section>
-            <h2>Datos de Contacto Directo</h2>
-            <p>A continuación se detallan los medios de comunicación personales.</p>
-
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">cristian6680@gmail.com</div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-label">Whatsapp</div>
-                    <div class="contact-value">11-6445-5043</div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-label">Domicilio</div>
-                    <div class="contact-value">Catamarca 739, Quilmes</div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-label">Edad</div>
-                    <div class="contact-value">46 años</div>
-                </div>
-            </div>
-        </section>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <button class="btn-back" onclick="navigateTo('page-cv')">
-                &#8592; Volver al CV
-            </button>
+    <header>
+        <h1>Cristian Angel Romano</h1>
+        <div class="subtitle">Curriculum Vitae</div>
+        <div class="links">
+            <a href="mailto:cristian6680@gmail.com">Email</a> • 
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a> • 
+            <a href="https://github.com" target="_blank">Portfolio/GitHub</a> • 
+            <button onclick="window.print()" class="btn-download"> Descargar en PDF</button>
         </div>
-    </div>
+    </header>
 
+    <section>
+        <h2>Perfil Profesional</h2>
+        <p>Perfil polivalente con formación en Informática, Ciberseguridad y Comercio Exterior. Poseo una sólida trayectoria en administración, atención al cliente y soporte técnico, lo que me ha permitido desarrollar una gran capacidad analítica para la detección de errores y la resolución de problemas cotidianos con la tecnología. Soy proactivo, con dominio intermedio de inglés y portugués, orientado a aportar eficiencia operativa en entornos dinámicos.</p>
+    </section>
+
+    <section>
+        <h2>Experiencia Laboral</h2>
+        <div class="item">
+            <div class="item-title">
+                <span>Desarrollador independiente</span>
+                <span class="date">07/2019 - Presente</span>
+            </div>
+            <p>Técnico de soporte informático independiente. Prestación de servicios técnicos para clientes particulares y pequeños comercios locales. Diagnóstico, reparación y optimización de computadoras de escritorio y notebooks (Windows y Linux). Instalación y configuración de software, sistemas operativos, antivirus y redes domésticas de internet. Asistencia y asesoramiento técnico básico a usuarios para la resolución de problemas cotidianos con la tecnología.</p>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <span>Analista comex — Biokeen s.a</span>
+                <span class="date">12/2014 - 01/2019</span>
+            </div>
+            <p>Detección y resolución de discrepancias en la carga de datos (Identificación de errores/bugs operativos). Recepción de proveedores, facturación, conciliaciones bancarias, coordinación de cargas y verificación de documentación en comercio exterior (BL, certificados de origen, declaraciones aduaneras), coordinación con despachantes de aduanas.</p>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <span>Data Entry — Banco Santander</span>
+                <span class="date">09/2012 - 04/2013</span>
+            </div>
+            <p>Analista jr para control de oficializaciones aduaneras en el sector comex.</p>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <span>Administrativo — Centro de cirugía ocular s.a</span>
+                <span class="date">06/2007 - 12/2011</span>
+            </div>
+            <p>Empleado Administrativo. Admisión de pacientes, facturación, estudios de alta complejidad, turnos y emisión de órdenes médicas para autorizaciones en obra social.</p>
+        </div>
+    </section>
+    <section>
+        <h2>Educación</h2>
+        <div class="item">
+            <div class="item-title">
+                <span>Diplomatura en administración de redes Linux y ciberseguridad con hacking ético. UTN regional Delta</span>
+                <span class="date"></span>
+            </div>
+            <p>Capacitación técnica orientada a la gestión avanzada de sistemas operativos de código abierto, implementación de medidas de seguridad perimetral, detección de brechas de seguridad y mitigación de riesgos informáticos.</p>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <span>Universidad Nacional de Quilmes. Estudiante de licenciatura en informática.</span>
+                <span class="date"></span>
+            </div>
+            <p>Desarrollo de competencias analíticas y técnicas para el diseño, desarrollo e implementación de soluciones de software eficientes. Comprensión profunda de estructuras de datos, algoritmos y paradigmas tecnológicos adaptados a las necesidades operativas de las organizaciones.</p>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <span>Despachante de aduanas. ICA (Instituto de capacitación aduanera).</span>
+                <span class="date"></span>
+            </div>
+            <p>Capacitación en legislación aduanera, valoración de mercaderías, operativa bancaria de comex y procedimientos del régimen de destinaciones de importación y exportación, orientada al cumplimiento normativo y la eficiencia logística internacional.</p>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <span>Colegio General San Martín (secundario).</span>
+                <span class="date"></span>
+            </div>
+            <p>Título bachiller.</p>
+        </div>
+    </section>    
+    <section>
+        <h2>Habilidades Técnicas</h2>
+        <ul class="skills-list">
+            <li>• Desarrollador independiente fullstack para pequeños comercios.</li>
+            <li>• Programación estructurada en COBOL (herramientas de control mainframe: JCL, ISPF, DB2).</li>
+            <li>• Herramientas Office.</li>
+            <li>• Nivel básico de inglés y portugués.</li>
+        </ul>
+    </section>
 </div>
-
-<script>
-    function navigateTo(pageId) {
-        // Ocultar todas las páginas
-        const pages = document.querySelectorAll('.page');
-        pages.forEach(page => {
-            page.classList.remove('active');
-        });
-
-        // Mostrar la página solicitada
-        const targetPage = document.getElementById(pageId);
-        if (targetPage) {
-            targetPage.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-</script>
 
 </body>
 </html>
